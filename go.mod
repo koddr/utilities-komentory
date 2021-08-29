@@ -3,7 +3,6 @@ module github.com/Komentory/utilities
 go 1.17
 
 require (
-	github.com/Komentory/repository v0.0.3
 	github.com/go-playground/validator/v10 v10.9.0
 	github.com/gofiber/fiber/v2 v2.18.0
 	github.com/golang-jwt/jwt/v4 v4.0.0

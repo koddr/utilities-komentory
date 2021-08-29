@@ -1,5 +1,3 @@
-github.com/Komentory/repository v0.0.3 h1:foKSQw7guiXtGF+ndyIa43oj3RdAl/Vdh4KA0MRf2n0=
-github.com/Komentory/repository v0.0.3/go.mod h1:i1Y1wR7zn5ktkojiul3nS7nokbLq5RUWie5p2i68onw=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/andybalholm/brotli v1.0.3 h1:fpcw+r1N1h0Poc1F/pHbW40cUm/lMEQslZtCkBQ0UnM=
 github.com/andybalholm/brotli v1.0.3/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
