@@ -29,7 +29,7 @@ func PostgreSQLConnection() (*sqlx.DB, error) {
 	}
 
 	// Build PostgreSQL connection URL.
-	postgresConnURL, err := utilities.ConnectionURLBuilder("postgres")
+	postgresConnURL, err := utilities.ConnectionURLBuilder(utilities.DBConnectionName)
 	if err != nil {
 		return nil, err
 	}

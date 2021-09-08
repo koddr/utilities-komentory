@@ -11,13 +11,13 @@ import (
 // RedisConnection func for connect to Redis server.
 func RedisConnection() (*redis.Client, error) {
 	// Define Redis database number.
-	dbNumber, err := strconv.Atoi(os.Getenv("REDIS_DB_NUMBER"))
+	redisDBNumber, err := strconv.Atoi(os.Getenv("REDIS_DB_NUMBER"))
 	if err != nil {
 		return nil, err
 	}
 
 	// Build Redis connection URL.
-	redisConnURL, err := utilities.ConnectionURLBuilder("redis")
+	redisConnURL, err := utilities.ConnectionURLBuilder(utilities.RedisConnectionName)
 	if err != nil {
 		return nil, err
 	}
@@ -27,7 +27,7 @@ func RedisConnection() (*redis.Client, error) {
 		&redis.Options{
 			Addr:     redisConnURL,
 			Password: os.Getenv("REDIS_PASSWORD"),
-			DB:       dbNumber,
+			DB:       redisDBNumber,
 		},
 	), nil
 }
