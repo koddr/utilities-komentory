@@ -3,12 +3,12 @@ package utilities
 import "fmt"
 
 const (
-	// RoleNameAdmin const for the name of the admin role.
-	RoleNameAdmin string = "admin"
-	// RoleNameModerator const for the name of the moderator role.
-	RoleNameModerator string = "moderator"
 	// RoleNameUser const for the name of the user role.
-	RoleNameUser string = "user"
+	RoleNameUser int = 1
+	// RoleNameModerator const for the name of the moderator role.
+	RoleNameModerator int = 2
+	// RoleNameAdmin const for the name of the admin role.
+	RoleNameAdmin int = 3
 )
 
 // GenerateCredential func for generating credential:
@@ -22,11 +22,11 @@ func GenerateCredential(object, action string, isOwnCredential bool) string {
 	return credential
 }
 
-// GenerateCredentialsByRoleName func for generating slice of the credentials,
-// by given role name.
-func GenerateCredentialsByRoleName(name string) ([]string, error) {
+// GenerateCredentialsByRole func for generating slice of the credentials,
+// by given role number.
+func GenerateCredentialsByRole(role int) ([]string, error) {
 	var credentials []string
-	switch name {
+	switch role {
 	case RoleNameAdmin:
 		credentials = []string{
 			// Any object:
@@ -87,7 +87,7 @@ func GenerateCredentialsByRoleName(name string) ([]string, error) {
 			GenerateCredential("user_attrs", "update", true),
 		}
 	default:
-		return credentials, fmt.Errorf(GenerateErrorMessage(400, "role", name))
+		return credentials, fmt.Errorf(GenerateErrorMessage(400, "role", fmt.Sprint(role)))
 	}
 	return credentials, nil
 }
