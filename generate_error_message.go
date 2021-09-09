@@ -43,3 +43,11 @@ func CheckForError(ctx *fiber.Ctx, errFunc error, statusCode int, object, explan
 	}
 	return nil
 }
+
+// ThrowJSONError func for throwing error in JSON format.
+func ThrowJSONError(ctx *fiber.Ctx, statusCode int, object, explanation string) error {
+	return ctx.Status(statusCode).JSON(&fiber.Map{
+		"error": true,
+		"msg":   GenerateErrorMessage(statusCode, object, explanation),
+	})
+}
