@@ -37,7 +37,6 @@ func GenerateErrorMessage(statusCode int, object, explanation string) string {
 func CheckForError(ctx *fiber.Ctx, errFunc error, statusCode int, object, explanation string) error {
 	if errFunc != nil {
 		return ctx.JSON(&fiber.Map{
-			"error":  true,
 			"status": statusCode,
 			"msg":    GenerateErrorMessage(statusCode, object, explanation),
 		})
@@ -49,7 +48,6 @@ func CheckForError(ctx *fiber.Ctx, errFunc error, statusCode int, object, explan
 func CheckForErrorWithStatusCode(ctx *fiber.Ctx, errFunc error, statusCode int, object, explanation string) error {
 	if errFunc != nil {
 		return ctx.Status(statusCode).JSON(&fiber.Map{
-			"error":  true,
 			"status": statusCode,
 			"msg":    GenerateErrorMessage(statusCode, object, explanation),
 		})
@@ -60,7 +58,6 @@ func CheckForErrorWithStatusCode(ctx *fiber.Ctx, errFunc error, statusCode int, 
 // ThrowJSONError func for throwing error in JSON format.
 func ThrowJSONError(ctx *fiber.Ctx, statusCode int, object, explanation string) error {
 	return ctx.JSON(&fiber.Map{
-		"error":  true,
 		"status": statusCode,
 		"msg":    GenerateErrorMessage(statusCode, object, explanation),
 	})
@@ -69,7 +66,6 @@ func ThrowJSONError(ctx *fiber.Ctx, statusCode int, object, explanation string) 
 // ThrowJSONErrorWithStatusCode func for throwing error with status code in JSON format.
 func ThrowJSONErrorWithStatusCode(ctx *fiber.Ctx, statusCode int, object, explanation string) error {
 	return ctx.Status(statusCode).JSON(&fiber.Map{
-		"error":  true,
 		"status": statusCode,
 		"msg":    GenerateErrorMessage(statusCode, object, explanation),
 	})
