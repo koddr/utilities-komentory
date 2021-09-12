@@ -1,6 +1,7 @@
 package utilities
 
 import (
+	"fmt"
 	"os"
 	"strings"
 
@@ -13,7 +14,7 @@ import (
 type TokenMetaData struct {
 	UserID      uuid.UUID
 	Credentials []string
-	Expires     int64
+	Expire      int64
 }
 
 // ExtractTokenMetaData func to extract metadata from JWT.
@@ -33,7 +34,7 @@ func ExtractTokenMetaData(c *fiber.Ctx) (*TokenMetaData, error) {
 		}
 
 		// Expires time.
-		expires := int64(claims["expires"].(float64))
+		expire := int64(claims["expire"].(float64))
 
 		// User credentials.
 		credentials := []string{}
@@ -44,7 +45,7 @@ func ExtractTokenMetaData(c *fiber.Ctx) (*TokenMetaData, error) {
 		return &TokenMetaData{
 			UserID:      userID,
 			Credentials: credentials,
-			Expires:     expires,
+			Expire:      expire,
 		}, nil
 	}
 
@@ -65,6 +66,11 @@ func extractToken(c *fiber.Ctx) string {
 
 func verifyToken(c *fiber.Ctx) (*jwt.Token, error) {
 	tokenString := extractToken(c)
+
+	// Check, if token is empty string.
+	if tokenString == "" {
+		return nil, fmt.Errorf("token is not verifiably")
+	}
 
 	token, err := jwt.Parse(tokenString, jwtKeyFunc)
 	if err != nil {

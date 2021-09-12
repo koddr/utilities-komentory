@@ -17,7 +17,7 @@ func TokenValidateExpireTime(ctx *fiber.Ctx) (*TokenMetaData, error) {
 	}
 
 	// Checking, if now time greather than expiration from JWT.
-	if time.Now().Unix() > claims.Expires {
+	if time.Now().Unix() > claims.Expire {
 		// Return unauthorized (permission denied) error message.
 		return nil, fmt.Errorf(GenerateErrorMessage(401, "token", "was expired"))
 	}
@@ -35,7 +35,7 @@ func TokenValidateExpireTimeAndCredentials(ctx *fiber.Ctx, credentials []string)
 	}
 
 	// Checking, if now time greather than expiration from JWT.
-	if time.Now().Unix() > claims.Expires {
+	if time.Now().Unix() > claims.Expire {
 		// Return unauthorized (permission denied) error message.
 		return nil, fmt.Errorf(GenerateErrorMessage(401, "token", "was expired"))
 	}
