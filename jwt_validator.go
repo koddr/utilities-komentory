@@ -44,7 +44,7 @@ func TokenValidateExpireTimeAndCredentials(ctx *fiber.Ctx, credentials []string)
 	for _, credential := range credentials {
 		// Return unauthorized (permission denied) error message.
 		if !SearchStringInArray(credential, claims.Credentials) {
-			return nil, fmt.Errorf(GenerateErrorMessage(401, "token", "was expired"))
+			return nil, fmt.Errorf(GenerateErrorMessage(401, "token", "no required credentials"))
 		}
 	}
 
