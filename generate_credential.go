@@ -39,8 +39,9 @@ func GenerateCredentialsByRole(role int) ([]string, error) {
 			GenerateCredential("answers", "create", false),
 			GenerateCredential("answers", "update", false),
 			GenerateCredential("answers", "delete", false),
-			GenerateCredential("user_password", "update", false),
 			GenerateCredential("user_attrs", "update", false),
+			GenerateCredential("user_settings", "update", false),
+			GenerateCredential("user_password", "update", false),
 			// Is own object:
 			GenerateCredential("projects", "update", true),
 			GenerateCredential("projects", "delete", true),
@@ -48,8 +49,9 @@ func GenerateCredentialsByRole(role int) ([]string, error) {
 			GenerateCredential("tasks", "delete", true),
 			GenerateCredential("answers", "update", true),
 			GenerateCredential("answers", "delete", true),
-			GenerateCredential("user_password", "update", true),
 			GenerateCredential("user_attrs", "update", true),
+			GenerateCredential("user_settings", "update", true),
+			GenerateCredential("user_password", "update", true),
 		}
 	case RoleNameModerator:
 		credentials = []string{
@@ -68,8 +70,9 @@ func GenerateCredentialsByRole(role int) ([]string, error) {
 			GenerateCredential("tasks", "delete", true),
 			GenerateCredential("answers", "update", true),
 			GenerateCredential("answers", "delete", true),
-			GenerateCredential("user_password", "update", true),
 			GenerateCredential("user_attrs", "update", true),
+			GenerateCredential("user_settings", "update", true),
+			GenerateCredential("user_password", "update", true),
 		}
 	case RoleNameUser:
 		credentials = []string{
@@ -83,8 +86,9 @@ func GenerateCredentialsByRole(role int) ([]string, error) {
 			GenerateCredential("tasks", "update", true),
 			GenerateCredential("tasks", "delete", true),
 			GenerateCredential("answers", "update", true),
-			GenerateCredential("user_password", "update", true),
 			GenerateCredential("user_attrs", "update", true),
+			GenerateCredential("user_settings", "update", true),
+			GenerateCredential("user_password", "update", true),
 		}
 	default:
 		return credentials, fmt.Errorf(GenerateErrorMessage(400, "role", fmt.Sprint(role)))
