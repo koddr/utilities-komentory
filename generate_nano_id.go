@@ -9,20 +9,20 @@ const (
 	// UpperCaseChars const for generate a new NanoID with only upper case characters.
 	UpperCaseChars string = "0123456789_ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
 
-	// LowerCaseChars const for generate a new NanoID with only lower case characters.
-	LowerCaseChars string = "0123456789_abcdefghijklmnopqrstuvwxyz-"
-
 	// UpperCaseWithoutDashesChars const for generate a new NanoID
 	// with only upper case characters, but without dashes.
 	UpperCaseWithoutDashesChars string = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-	// LowerCaseWithoutDashesChars const for generate a new NanoID
-	// with only lower case characters, but without dashes.
-	LowerCaseWithoutDashesChars string = "0123456789abcdefghijklmnopqrstuvwxyz"
-
 	// UpperCaseWithoutNumbersChars const for generate a new NanoID
 	// with only upper case characters, but without numbers.
 	UpperCaseWithoutNumbersChars string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ_-"
+
+	// LowerCaseChars const for generate a new NanoID with only lower case characters.
+	LowerCaseChars string = "0123456789_abcdefghijklmnopqrstuvwxyz-"
+
+	// LowerCaseWithoutDashesChars const for generate a new NanoID
+	// with only lower case characters, but without dashes.
+	LowerCaseWithoutDashesChars string = "0123456789abcdefghijklmnopqrstuvwxyz"
 
 	// LowerCaseWithoutNumbersChars const for generate a new NanoID
 	// with only lower case characters, but without numbers.
@@ -41,8 +41,12 @@ const (
 // See: https://zelark.github.io/nano-id-cc/
 func GenerateNewNanoID(chars string, size int) (string, error) {
 	if chars == "" {
-		// If not set, default to environment.
+		// If not set, get default.
 		chars = DefaultChars
+	}
+	if size == 0 {
+		// If not set, get default.
+		size = 21
 	}
 	id, err := gonanoid.Generate(chars, size)
 	if err != nil {
