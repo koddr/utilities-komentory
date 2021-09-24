@@ -57,12 +57,12 @@ func CheckForErrorWithStatusCode(ctx *fiber.Ctx, errFunc error, statusCode int, 
 
 // CheckForValidationError func for checking validation errors.
 // See: https://github.com/go-playground/validator/blob/master/_examples/simple/main.go#L69
-func CheckForValidationError(ctx *fiber.Ctx, errFunc error, statusCode int, object, explanation string) error {
+func CheckForValidationError(ctx *fiber.Ctx, errFunc error, statusCode int, object string) error {
 	if errFunc != nil {
 		return ctx.JSON(&fiber.Map{
-			"status":       statusCode,
-			"msg":          fmt.Sprintf("error fields validation for the %s", object),
-			"error_fields": errFunc.Error(),
+			"status": statusCode,
+			"msg":    fmt.Sprintf("fields validation error for the %s", object),
+			"fields": errFunc.Error(),
 		})
 	}
 	return nil
