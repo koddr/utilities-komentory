@@ -12,7 +12,7 @@ import (
 
 // NewValidator func for create a new validator for model fields.
 func NewValidator() *validator.Validate {
-	// Create a new validator for a Book model.
+	// Create a new validator.
 	validate := validator.New()
 
 	// Return the JSON name for each struct field.
